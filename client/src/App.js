@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React,{useEffect} from 'react';
+import Header from "./components/Header/Header";
+import {Route, Redirect} from "react-router-dom";
+import Login from "./components/Login/Login";
+import Registration from "./components/Registration/Registration";
+import Home from "./components/Home/Home";
+import {checkToken} from "./actions";
+import {connect} from "react-redux";
+const  App = (props) => {
+  useEffect(() => {
+    props.checkToken();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+<>
+<Header/>
+  {
+    (props.currentUser) ? <Redirect to='/home'/> : <Redirect to='/registration'/>
+  }
+  <Route path="/login" render={() => <Login/>}/>
+  <Route path="/registration" render={() => <Registration/>}/>
+  <Route path="/home" render={() => <Home/>}/>
+</>
   );
-}
+};
 
-export default App;
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+
+const mapDispatchToProps = dispatch => ({
+  checkToken: () => dispatch(checkToken()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
