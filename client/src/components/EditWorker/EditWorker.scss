@@ -1,0 +1,20 @@
+.fa-check{
+  cursor: pointer;
+  color: #22d40c;
+}
+.fa-reply{
+  cursor: pointer;
+  color: #d49a2f;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.EditInput {
+  border-bottom: grey 1px solid;
+}
+input {
+  width: 100%;
+}

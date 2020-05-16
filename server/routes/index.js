@@ -11,4 +11,7 @@ routes.post('/registration', userController.registration, token.registration);
 routes.post('/login', token.login);
 routes.post('/checkToken', middleware.checkToken,userController.viewProfile);
 routes.post('/addWorker', middleware.checkToken,workerController.addWorker);
+routes.post('/deleteWorker', middleware.checkToken,workerController.deleteWorker);
+routes.post('/updateWorker', middleware.checkToken,workerController.updateWorker);
+routes.get('/getWorkers', middleware.checkToken,workerController.getWorkers);
 module.exports = routes;

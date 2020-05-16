@@ -8,6 +8,15 @@ export const LOGOUT = "LOGOUT";
 export const WRITING_ADD_WORKER_TEXT = "WRITING_ADD_WORKER_TEXT";
 export const SELECT_DROP_DOWN = "SELECT_DROP_DOWN";
 export const SUBMIT_WORKER = "SUBMIT_WORKER";
+export const GET_WORKERS = "GET_WORKERS";
+export const SET_WORKERS = "SET_WORKERS";
+export const WRITING_EDIT_WORKER_TEXT = "WRITING_EDIT_WORKER_TEXT";
+export const SET_WORKER_TO_EDIT = "SET_WORKER_TO_EDIT";
+export const SET_WORKER_TO_WORKERS = "SET_WORKER_TO_WORKERS";
+export const SET_WORKER_TO_DELETE = "SET_WORKER_TO_DELETE";
+export const REMOVE_DELETED_WORKER = "REMOVE_DELETED_WORKER";
+export const UPDATE_WORKER = "UPDATE_WORKER";
+export const SET_UPDATED_WORKER = "SET_UPDATED_WORKER";
 
 
 
@@ -40,8 +49,17 @@ export const checkToken = () => ({
 export const logOut = () => ({
     type: LOGOUT,
 });
+export const getWorkers = () => ({
+    type: GET_WORKERS,
+});
+export const setWorkers = () => ({
+    type: SET_WORKERS,
+});
 export const writingAddWorkerText = (text, field) => ({
     type: WRITING_ADD_WORKER_TEXT, payload:text, field
+});
+export const writingEditWorkerText = (text, field) => ({
+    type: WRITING_EDIT_WORKER_TEXT, payload:text, field
 });
 export const selectDropDown = (select, field, stateProperty) => ({
 
@@ -50,4 +68,23 @@ export const selectDropDown = (select, field, stateProperty) => ({
 export const submitWorker = (data) => ({
 
     type: SUBMIT_WORKER, payload: data
+});
+export const updateWorker = (data) => ({
+
+    type: UPDATE_WORKER, payload: data
+});
+export const setWorkerToEdit = (id) => ({
+    type: SET_WORKER_TO_EDIT, payload: id
+});
+export const setUpdatedWorker = (data) => ({
+    type: SET_UPDATED_WORKER, payload: data
+});
+export const setWorkerToWorkers = (data) => ({
+    type: SET_WORKER_TO_WORKERS, payload: data
+});
+export const setWorkerToDelete = (id) => ({
+    type: SET_WORKER_TO_DELETE, payload: id
+});
+export const removeDeletedWorker = (id) => ({
+    type: REMOVE_DELETED_WORKER, payload: id
 });

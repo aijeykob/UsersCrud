@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {writingAddWorkerText,submitWorker} from "../../actions";
+import {writingAddWorkerText, submitWorker} from "../../actions";
 import {Accordion, Form} from "react-bootstrap";
 import {DataPicker} from '../DataPicker/DataPicker'
 import './AddWorker.scss';
@@ -11,11 +11,11 @@ const AddWorker = (props) => {
     const onChangeInput = (e) => {
         props.writingAddWorkerText(e.target.value, e.target.name)
     };
-    const onSubmitWorker =(e) => {
+    const onSubmitWorker = (e) => {
         e.preventDefault();
         props.submitWorker(props.workerToAdd);
 
-    }
+    };
     return (
         <Accordion>
             <Accordion.Toggle eventKey="0">Add Worker</Accordion.Toggle>
@@ -46,7 +46,7 @@ const AddWorker = (props) => {
                            value={props.workerToAdd.salary}
                            placeholder='Enter Worker salary'
                            onChange={(e) => onChangeInput(e)}/>
-                    <DataPicker/>
+                    <DataPicker stateProperty={'workerToAdd'}/>
                     <DropDown nameDrop={'gender'} stateProperty={'workerToAdd'} items={['male', 'female']}
                               selected={props.workerToAdd.gender}/>
                     <input type="text"

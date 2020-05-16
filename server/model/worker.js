@@ -7,6 +7,9 @@ const WorkerSchema = new Schema({
     name:String,
     surname:String,
     patronymic:String,
+    month:String,
+    year:String,
+    day:String,
     gender:{
         type:String,
         enum:['male','female']},

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dropdown,Form,Col} from "react-bootstrap";
+import {FormControl} from "react-bootstrap";
 import {connect} from 'react-redux'
 import {
     selectDropDown
@@ -8,27 +8,22 @@ import {
 const DropDownComponent = (props) => {
 
     const selectItem = (el) => {
-        props.selectDropDown(el, props.nameDrop, props.stateProperty)
+        props.selectDropDown(el.target.value, props.nameDrop, props.stateProperty)
     };
 
     return (
 
-        <Form.Control as="select" value={props.selected}>
+        <FormControl as="select" value={props.selected} onChange={(e) => selectItem(e)} >
             {
                 props.items.map(el => {
                     return (
                         <option className="dropdown-item"
-                                onClick={() => selectItem(el)}
                                 key={el}
                         > {el} </option>
                     )
                 })
             }
-        </Form.Control>
-
-
-
-
+        </FormControl>
     );
 };
 

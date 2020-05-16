@@ -8,20 +8,27 @@ import {Form} from "react-bootstrap";
 class DataPicker extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {month: ' ', year: ' ', day: ' '};
+        (this.props.stateProperty === 'workerToEdit') ?
+            this.state = {
+                month: this.props.workerToEdit.month,
+                year: this.props.workerToEdit.year,
+                day: this.props.workerToEdit.day
+            }
+            :
+            this.state = {month: ' ', year: ' ', day: ' '};
     }
 
     monthChange = (event) => {
         this.setState({month: event.target.value});
-        this.props.selectDropDown(event.target.value, 'month', 'workerToAdd')
+        this.props.selectDropDown(event.target.value, 'month', this.props.stateProperty)
     };
     yearChange = (event) => {
         this.setState({year: event.target.value});
-        this.props.selectDropDown(event.target.value, 'year', 'workerToAdd')
+        this.props.selectDropDown(event.target.value, 'year', this.props.stateProperty)
     };
     dayChange = (event) => {
         this.setState({day: event.target.value});
-        this.props.selectDropDown(event.target.value, 'day', 'workerToAdd')
+        this.props.selectDropDown(event.target.value, 'day', this.props.stateProperty)
     };
 
     getNumberForData() {
@@ -50,69 +57,71 @@ class DataPicker extends React.Component {
 
     render() {
 
-        return(
+        return (
             <>
-                    <Form.Control
-                        as="select"
-                        value={this.state.month}
-                        onChange={this.monthChange}
-                        style={{height: '30px'}}
-                        required>
-                        <option value=' '></option>
-                        <option value='1'>January</option>
-                        <option value='2'>February</option>
-                        <option value='3'>March</option>
-                        <option value='4'>April</option>
-                        <option value='5'>May</option>
-                        <option value='6'>June</option>
-                        <option value='7'>July</option>
-                        <option value='8'>August</option>
-                        <option value='9'>September</option>
-                        <option value='10'>October</option>
-                        <option value='11'>November</option>
-                        <option value='12'>December</option>
-                    </Form.Control>
-                    <Form.Control
-                        as="select"
-                        value={this.state.year}
-                        onChange={this.yearChange}
-                        style={{height: '30px'}}
-                        required
-                    >
-                        {
-                            [...Array(83)].map((el, i) => {
-                                if (i === 0) {
-                                    return (<option key={i} value={' '}></option>)
-                                } else {
-                                    return (<option key={i} value={i + 1920}>{i + 1920}</option>)
-                                }
-                            })
-                        }
-                    </Form.Control>
+                <Form.Control
+                    as="select"
+                    value={this.state.month}
+                    onChange={this.monthChange}
+                    style={{height: '30px'}}
+                    required>
+                    <option value=' '></option>
+                    <option value='1'>January</option>
+                    <option value='2'>February</option>
+                    <option value='3'>March</option>
+                    <option value='4'>April</option>
+                    <option value='5'>May</option>
+                    <option value='6'>June</option>
+                    <option value='7'>July</option>
+                    <option value='8'>August</option>
+                    <option value='9'>September</option>
+                    <option value='10'>October</option>
+                    <option value='11'>November</option>
+                    <option value='12'>December</option>
+                </Form.Control>
+                <Form.Control
+                    as="select"
+                    value={this.state.year}
+                    onChange={this.yearChange}
+                    style={{height: '30px'}}
+                    required
+                >
+                    {
+                        [...Array(83)].map((el, i) => {
+                            if (i === 0) {
+                                return (<option key={i} value={' '}></option>)
+                            } else {
+                                return (<option key={i} value={i + 1920}>{i + 1920}</option>)
+                            }
+                        })
+                    }
+                </Form.Control>
 
-                    <Form.Control value={this.state.day}
-                            onChange={this.dayChange}
-                            as="select"
-                            style={{height: '30px',width: '64px'}}
-                            required
-                    >
-                        {
-                            [...Array(this.getNumberForData())].map((el, i) => {
+                <Form.Control value={this.state.day}
+                              onChange={this.dayChange}
+                              as="select"
+                              style={{height: '30px', width: '64px'}}
+                              required
+                >
+                    {
+                        [...Array(this.getNumberForData())].map((el, i) => {
 
-                                if (i === 0) {
-                                    return (<option key={el} value={' '}></option>)
-                                } else {
-                                    return (<option key={el} value={i + 1}>{i + 1}</option>)
-                                }
-                            })
-                        }
-                    </Form.Control>
-               </>
+                            if (i === 0) {
+                                return (<option key={el} value={' '}></option>)
+                            } else {
+                                return (<option key={el} value={i + 1}>{i + 1}</option>)
+                            }
+                        })
+                    }
+                </Form.Control>
+            </>
         );
     }
 }
 
 const mapStateToProps = state => ({
+    workerToAdd: state.workerToAdd,
+    workerToEdit: state.workerToEdit,
 });
 
 

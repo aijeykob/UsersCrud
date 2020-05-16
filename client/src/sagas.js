@@ -3,6 +3,9 @@ import {
     submitLogin,
     checkToken,
     submitWorker,
+    getWorkers,
+    setWorkerToDelete,
+    updateWorker
 } from './functionsForSagas'
 import {put, takeEvery, call, all} from 'redux-saga/effects'
 
@@ -43,7 +46,37 @@ export function* workerSubmitWorker(d) {
     try {
         const response = yield call(submitWorker,d);
         const data = response.data;
-        // yield put({type: 'SET_CURRENT_USER', payload: data.username})
+        yield put({type: 'SET_WORKER_TO_WORKERS', payload: data})
+    } catch (error) {
+        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+    }
+}
+export function* workerSetWorkerToDelete(d) {
+
+    try {
+        const response = yield call(setWorkerToDelete,d);
+        const data = response.data;
+        yield put({type: 'REMOVE_DELETED_WORKER', payload: data})
+    } catch (error) {
+        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+    }
+}
+export function* workerUpdateWorker(d) {
+
+    try {
+        const response = yield call(updateWorker,d);
+        const data = response.data;
+        yield put({type: 'SET_UPDATED_WORKER', payload: data})
+    } catch (error) {
+        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+    }
+}
+export function* workerGetWorkers() {
+    try {
+        const response = yield call(getWorkers);
+        const data = response.data;
+        console.log(data);
+        yield put({type: 'SET_WORKERS', payload: data})
     } catch (error) {
         // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
     }
@@ -67,6 +100,18 @@ export function* watchSubmitWorker() {
 
     yield takeEvery('SUBMIT_WORKER', workerSubmitWorker)
 }
+export function* watchGetWorkers() {
+
+    yield takeEvery('GET_WORKERS', workerGetWorkers)
+}
+export function* watchSetWorkerToDelete() {
+
+    yield takeEvery('SET_WORKER_TO_DELETE', workerSetWorkerToDelete)
+}
+export function* watchUpdateWorker() {
+
+    yield takeEvery('UPDATE_WORKER', workerUpdateWorker)
+}
 
 export default function* rootSaga() {
     yield all([
@@ -74,5 +119,8 @@ export default function* rootSaga() {
         watchSubmitLogin(),
         watchCheckToken(),
         watchSubmitWorker(),
+        watchGetWorkers(),
+        watchSetWorkerToDelete(),
+        watchUpdateWorker(),
     ])
 }

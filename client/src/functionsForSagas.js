@@ -33,3 +33,23 @@ export const submitWorker = (d) => {
         {headers: setHeadersWithToken()}
     )
 };
+export const updateWorker = (d) => {
+    return axios.post(
+        `${apiUrl}/updateWorker`,
+        d.payload,
+        {headers: setHeadersWithToken()}
+    )
+};
+export const setWorkerToDelete = (d) => {
+    return axios.post(
+        `${apiUrl}/deleteWorker`,
+        {id:d.payload},
+        {headers: setHeadersWithToken()}
+    )
+};
+export const getWorkers = () => {
+    return axios.get(
+        `${apiUrl}/getWorkers`,
+        {headers: setHeadersWithToken()}
+    )
+};
