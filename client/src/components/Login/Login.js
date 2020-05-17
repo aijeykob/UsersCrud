@@ -1,10 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {writingLoginText, submitLogin} from "../../actions";
-import {toast, ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {writingLoginText, submitLogin, errorToast} from "../../actions";
+import {toast} from 'react-toastify';
+import {Button} from "react-bootstrap";
 import './Login.scss';
+
 const Login = (props) => {
+    const errorToast = () => {
+        toast(props.error.text);
+        props.errorToast({status: true, text: ''})
+    };
     const onChangeInput = (e) => {
         props.writingLoginText(e.target.value, e.target.name)
     };
@@ -18,45 +23,50 @@ const Login = (props) => {
         }
         if (!validatedPassword) {
             toast("Please enter correct password with a Latin lowercase and capital letters, numbers, special characters. 8 characters minimum");
-             return
+            return
         }
         const d = props.login;
         props.submitLogin(d)
-
     };
 
     return (
         <div className='login'>
             <div className="container">
                 <div className="login__row">
+                    <p>Username:</p>
                     <input type="text"
                            name='username'
                            value={props.login.username}
                            placeholder='Enter username'
                            onChange={(e) => onChangeInput(e)}
                            className="login__input"/>
+                    <p>Password:</p>
                     <input type="password"
                            name='password'
                            value={props.login.password}
                            placeholder='Enter password'
                            onChange={(e) => onChangeInput(e)}
                            className="login__input"/>
-                    <button onClick={(e) => onSubmitLogin(e)}>Login</button>
+                    <Button onClick={(e) => onSubmitLogin(e)}>Login</Button>
                 </div>
             </div>
-            <ToastContainer/>
+            {
+                !props.error.status && errorToast()
+            }
         </div>
     );
 };
 
 const mapStateToProps = state => ({
-    login: state.login
+    login: state.login,
+    error: state.error,
 });
 
 
 const mapDispatchToProps = dispatch => ({
     writingLoginText: (text, field) => dispatch(writingLoginText(text, field)),
     submitLogin: (data) => dispatch(submitLogin(data)),
+    errorToast: (data) => dispatch(errorToast(data)),
 
 });
 

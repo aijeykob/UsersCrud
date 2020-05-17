@@ -43,7 +43,7 @@ export const updateWorker = (d) => {
 export const setWorkerToDelete = (d) => {
     return axios.post(
         `${apiUrl}/deleteWorker`,
-        {id:d.payload},
+        {id: d.payload},
         {headers: setHeadersWithToken()}
     )
 };

@@ -15,7 +15,7 @@ class DataPicker extends React.Component {
                 day: this.props.workerToEdit.day
             }
             :
-            this.state = {month: ' ', year: ' ', day: ' '};
+            this.state = {month: '', year: '', day: ''};
     }
 
     monthChange = (event) => {
@@ -65,7 +65,7 @@ class DataPicker extends React.Component {
                     onChange={this.monthChange}
                     style={{height: '30px'}}
                     required>
-                    <option value=' '></option>
+                    <option value=''></option>
                     <option value='1'>January</option>
                     <option value='2'>February</option>
                     <option value='3'>March</option>
@@ -89,7 +89,7 @@ class DataPicker extends React.Component {
                     {
                         [...Array(83)].map((el, i) => {
                             if (i === 0) {
-                                return (<option key={i} value={' '}></option>)
+                                return (<option key={i} value={''}></option>)
                             } else {
                                 return (<option key={i} value={i + 1920}>{i + 1920}</option>)
                             }
@@ -100,14 +100,14 @@ class DataPicker extends React.Component {
                 <Form.Control value={this.state.day}
                               onChange={this.dayChange}
                               as="select"
-                              style={{height: '30px', width: '64px'}}
+                              style={{height: '30px'}}
                               required
                 >
                     {
                         [...Array(this.getNumberForData())].map((el, i) => {
 
                             if (i === 0) {
-                                return (<option key={el} value={' '}></option>)
+                                return (<option key={el} value={''}></option>)
                             } else {
                                 return (<option key={el} value={i + 1}>{i + 1}</option>)
                             }

@@ -28,7 +28,7 @@ const Home = (props) => {
         props.setWorkerToDelete(e.target.id)
     };
     return (
-        <div className='container'>
+        <div className='containerr'>
             <AddWorker/>
             <div className="home">
                 <div className="content">
@@ -45,30 +45,30 @@ const Home = (props) => {
                             <div className="col lastHeaderCol">Edit</div>
                         </div>
 
-                            {
-                                props.workers.map(el => {
-                                    return (
-                                        (workerEditToggle === el._id) ? <EditWorker editWorker={(e) => editWorker(e)}/>
-                                            :
-                                            <div className='row' key={el.name}>
-                                                <div className='col'>{el.name}</div>
-                                                <div className='col'>{el.surname}</div>
-                                                <div className='col'>{el.patronymic}</div>
-                                                <div className='col'>{el.contact}</div>
-                                                <div className='col'>{el.position}</div>
-                                                <div className='col'>{formatDate(el.birthday)}</div>
-                                                <div className='col'>{el.gender}</div>
-                                                <div className='col'>{el.salary}</div>
-                                                <div className='col lastRowCol'>
-                                                    <i title='edit' className="fas fa-user-edit" id={el._id}
-                                                       onClick={(e) => editWorker(e)}/>
-                                                    <i title='delete' id={el._id} className="fas fa-trash-alt"
-                                                       onClick={(e) => deleteWorker(e)}/>
-                                                </div>
+                        {
+                            props.workers.map(el => {
+                                return (
+                                    (workerEditToggle === el._id) ? <EditWorker editWorker={(e) => editWorker(e)}/>
+                                        :
+                                        <div className='row' key={el.name}>
+                                            <div className='col'>{el.name}</div>
+                                            <div className='col'>{el.surname}</div>
+                                            <div className='col'>{el.patronymic}</div>
+                                            <div className='col'>{el.contact}</div>
+                                            <div className='col'>{el.position}</div>
+                                            <div className='col'>{formatDate(el.birthday)}</div>
+                                            <div className='col'>{el.gender}</div>
+                                            <div className='col'>{el.salary}</div>
+                                            <div className='col lastRowCol'>
+                                                <i title='edit' className="fas fa-user-edit" id={el._id}
+                                                   onClick={(e) => editWorker(e)}/>
+                                                <i title='delete' id={el._id} className="fas fa-trash-alt"
+                                                   onClick={(e) => deleteWorker(e)}/>
                                             </div>
-                                    )
-                                })
-                            }
+                                        </div>
+                                )
+                            })
+                        }
                     </div>
                 </div>
             </div>

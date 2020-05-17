@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {Navbar, Nav} from "react-bootstrap";
+import {Navbar, Nav,Button,Form} from "react-bootstrap";
 import './Header.scss';
 import {logOut} from "../../actions";
 import {connect} from "react-redux";
@@ -15,21 +15,26 @@ const Header = (props) => {
     <header className="Header">
         <Navbar bg="dark" expand="lg" variant='dark'>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
+            <Navbar.Collapse className="justify-space-between" id="basic-navbar-nav">
                     {
                         (props.currentUser)?
                             <>
+                            <Nav className="mr-auto">
                             <NavLink className='Header__navLink' to={"/home"}>Home</NavLink>
-                                <button className='header__logoutBtn' onClick={(e)=>onLogOut(e)}>LogOut</button>
+                            </Nav>
+
+                                <Button className='header__logoutBtn float-right '
+                                        onClick={(e) => onLogOut(e)}>LogOut</Button>
+
                             </>
                             :
                             <>
+                            <Nav className="mr-auto">
                             <NavLink className='Header__navLink' to={"/login"}>Login</NavLink>
                             <NavLink className='Header__navLink' to={"/registration"}>Registration</NavLink>
+                            </Nav>
                     </>
                             }
-                </Nav>
             </Navbar.Collapse>
         </Navbar>
     </header>

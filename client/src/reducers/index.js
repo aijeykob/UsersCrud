@@ -11,27 +11,32 @@ import {
     SET_WORKER_TO_WORKERS,
     REMOVE_DELETED_WORKER,
     SET_UPDATED_WORKER,
+    ERROR_TOAST,
 
 } from '../actions/index';
 
 const initState = {
-    registration:{
-        username:'',
-        password:''
+    error: {
+        status: true,
+        text: ''
     },
-    login:{
-        username:'',
-        password:''
+    registration: {
+        username: '',
+        password: '',
     },
-    currentUser:'',
-    workers:[],
-    workerToAdd:{
-        gender:'male'
+    login: {
+        username: '',
+        password: ''
     },
-    workerToEdit:{}
+    currentUser: '',
+    workers: [],
+    workerToAdd: {
+        gender: 'male'
+    },
+    workerToEdit: {}
 };
 
-const reducer = (state = initState, {type, payload, field,stateProperty }) => {
+const reducer = (state = initState, {type, payload, field, stateProperty}) => {
 
     switch (type) {
         case SET_WORKERS:
@@ -39,12 +44,21 @@ const reducer = (state = initState, {type, payload, field,stateProperty }) => {
                 ...state,
                 workers: payload
             };
+        case ERROR_TOAST:
+            return {
+                ...state,
+                error: {
+                    ...state.error,
+                    status: payload.status,
+                    text: payload.text,
+                }
+            };
         case SET_UPDATED_WORKER:
             return {
                 ...state,
-                workers: state.workers.map(el => (el._id === payload._id?{...payload}:el))
+                workers: state.workers.map(el => (el._id === payload._id ? {...payload} : el))
             };
-            case SET_WORKER_TO_WORKERS:
+        case SET_WORKER_TO_WORKERS:
             return {
                 ...state,
                 workers: [...state.workers, payload]
@@ -54,12 +68,12 @@ const reducer = (state = initState, {type, payload, field,stateProperty }) => {
                 ...state,
                 workers: state.workers.filter(item => item._id !== payload.id)
             };
-            case SET_WORKER_TO_EDIT:
+        case SET_WORKER_TO_EDIT:
             return {
                 ...state,
                 workerToEdit: payload
             };
-            case SELECT_DROP_DOWN:
+        case SELECT_DROP_DOWN:
             return {
                 ...state,
                 [stateProperty]: {
@@ -75,7 +89,7 @@ const reducer = (state = initState, {type, payload, field,stateProperty }) => {
                     [field]: payload
                 }
             };
-            case WRITING_EDIT_WORKER_TEXT:
+        case WRITING_EDIT_WORKER_TEXT:
             return {
                 ...state,
                 workerToEdit: {
@@ -83,7 +97,7 @@ const reducer = (state = initState, {type, payload, field,stateProperty }) => {
                     [field]: payload
                 }
             };
-            case WRITING_REGISTRATION_TEXT:
+        case WRITING_REGISTRATION_TEXT:
             return {
                 ...state,
                 registration: {
@@ -102,12 +116,19 @@ const reducer = (state = initState, {type, payload, field,stateProperty }) => {
         case SET_CURRENT_USER:
             return {
                 ...state,
-                currentUser: payload
+                currentUser: payload,
+                error: {
+                    ...state.error,
+                    registration: {
+                        status: true,
+                        text: ''
+                    }
+                }
             };
         case LOGOUT:
             return {
                 ...state,
-                currentUser:''
+                currentUser: ''
             };
         default:
             return state

@@ -3,6 +3,7 @@
   display: flex;
   flex-flow: column nowrap;
   text-align: center;
+
   .content {
     padding: 16px;
     background-color: #464d55;
@@ -31,24 +32,35 @@
 
 .col {
   flex: 2;
-  padding: 10px;
+  padding: 5px;
   word-break: break-all;
   display: flex;
   color: white;
   align-items: center;
 
+
 }
+
 .fa-user-edit {
   color: #3ab5a3;
   cursor: pointer;
 }
+
 .fa-trash-alt {
   color: #d43044;
   cursor: pointer;
 }
-.lastHeaderCol{
+
+.lastHeaderCol {
   justify-content: center;
 }
-.lastRowCol{
+
+.lastRowCol {
   justify-content: space-between;
+}
+
+.containerr {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
 }

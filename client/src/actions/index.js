@@ -17,9 +17,7 @@ export const SET_WORKER_TO_DELETE = "SET_WORKER_TO_DELETE";
 export const REMOVE_DELETED_WORKER = "REMOVE_DELETED_WORKER";
 export const UPDATE_WORKER = "UPDATE_WORKER";
 export const SET_UPDATED_WORKER = "SET_UPDATED_WORKER";
-
-
-
+export const ERROR_TOAST = "ERROR_TOAST";
 
 
 export const writingRegistrationText = (text, field) => ({
@@ -56,10 +54,10 @@ export const setWorkers = () => ({
     type: SET_WORKERS,
 });
 export const writingAddWorkerText = (text, field) => ({
-    type: WRITING_ADD_WORKER_TEXT, payload:text, field
+    type: WRITING_ADD_WORKER_TEXT, payload: text, field
 });
 export const writingEditWorkerText = (text, field) => ({
-    type: WRITING_EDIT_WORKER_TEXT, payload:text, field
+    type: WRITING_EDIT_WORKER_TEXT, payload: text, field
 });
 export const selectDropDown = (select, field, stateProperty) => ({
 
@@ -87,4 +85,7 @@ export const setWorkerToDelete = (id) => ({
 });
 export const removeDeletedWorker = (id) => ({
     type: REMOVE_DELETED_WORKER, payload: id
+});
+export const errorToast = (data) => ({
+    type: ERROR_TOAST, payload: data
 });

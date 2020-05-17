@@ -13,7 +13,7 @@ const DropDownComponent = (props) => {
 
     return (
 
-        <FormControl as="select" value={props.selected} onChange={(e) => selectItem(e)} >
+        <FormControl as="select" value={props.selected} onChange={(e) => selectItem(e)}>
             {
                 props.items.map(el => {
                     return (
@@ -28,8 +28,7 @@ const DropDownComponent = (props) => {
 };
 
 
-const mapStateToProps = state => ({
-});
+const mapStateToProps = state => ({});
 
 
 const mapDispatchToProps = dispatch => ({

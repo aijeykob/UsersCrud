@@ -1,11 +1,13 @@
 .Header__navLink {
   color: white;
   padding: 0 10px;
-  &:hover{
+
+  &:hover {
     color: #3ab5a3;
     text-decoration: none;
   }
-  &.active{
+
+  &.active {
     color: #3ab5a3;
   }
 }
