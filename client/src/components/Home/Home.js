@@ -32,49 +32,48 @@ const Home = (props) => {
     return (
         <div className='HomeContainer'>
             <AddWorker/>
-            <div className="home">
-                <div className="content">
-                    <div className="table" id="flex-table">
-                        <div className="row header">
-                            <div className="col">Name</div>
-                            <div className="col">Surname</div>
-                            <div className="col">Patronymic</div>
-                            <div className="col">Contact</div>
-                            <div className="col">Position</div>
-                            <div className="col lg">Birthday</div>
-                            <div className="col">Gender</div>
-                            <div className="col">Salary</div>
-                            <div className="col lastHeaderCol">Edit</div>
-                        </div>
 
+
+            <div className="Table">
+                <div className="Table-row Table-header">
+                    <div className="Table-row-item">Name</div>
+                    <div className="Table-row-item">Surname</div>
+                    <div className="Table-row-item">Patronymic</div>
+                    <div className="Table-row-item">Contact</div>
+                    <div className="Table-row-item">Position</div>
+                    <div className="Table-row-item">Birthday</div>
+                    <div className="Table-row-item">Gender</div>
+                    <div className="Table-row-item">Salary</div>
+                    <div className="Table-row-item ">Edit</div>
+                </div>
+                <div className="row-collection">
                         {
                             props.workers.map(el => {
                                 return (
                                     (workerEditToggle === el._id) ?
                                         <EditWorker key={el._id} editWorker={(e) => editWorker(e)}/>
                                         :
-                                        <div className='row' key={el._id}>
-                                            <div className='col'>{el.name}</div>
-                                            <div className='col'>{el.surname}</div>
-                                            <div className='col'>{el.patronymic}</div>
-                                            <div className='col'>{el.contact}</div>
-                                            <div className='col'>{el.position}</div>
-                                            <div className='col lg'>{formatDate(el.birthday)}</div>
-                                            <div className='col'>{el.gender}</div>
-                                            <div className='col'>{el.salary}</div>
-                                            <div className='col lastRowCol'>
+                                        <div className="Table-row">
+                                            <div className="Table-row-item" data-header="Name">{el.name}</div>
+                                            <div className="Table-row-item" data-header="Surname">{el.surname}</div>
+                                            <div className="Table-row-item" data-header="Patronymic">{el.patronymic}</div>
+                                            <div className="Table-row-item" data-header="Contact">{el.contact}</div>
+                                            <div className="Table-row-item" data-header="Position">{el.position}</div>
+                                            <div className="Table-row-item" data-header="Birthday">{formatDate(el.birthday)}</div>
+                                            <div className="Table-row-item" data-header="Gender">{el.gender}</div>
+                                            <div className="Table-row-item" data-header="Salary">{el.salary}</div>
+                                            <div className="Table-row-item" data-header="Edit">
                                                 <i title='edit' className="fas fa-user-edit" id={el._id}
                                                    onClick={(e) => editWorker(e)}/>
                                                 <i title='delete' id={el._id} className="fas fa-trash-alt"
                                                    onClick={(e) => deleteWorker(e)}/>
-                                            </div>
+                                        </div>
                                         </div>
                                 )
                             })
                         }
-                    </div>
-                    <PaginationWorkers/>
-                </div>
+                <PaginationWorkers/>
+            </div>
             </div>
         </div>
     )

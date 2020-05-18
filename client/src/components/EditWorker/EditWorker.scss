@@ -22,3 +22,8 @@ input::-webkit-inner-spin-button {
 input {
   width: 100%;
 }
+.birthday {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

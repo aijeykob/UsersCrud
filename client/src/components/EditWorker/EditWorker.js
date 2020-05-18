@@ -23,6 +23,7 @@ const EditWorker = (props) => {
 
         if (!validatedName) {
             toast('Enter correct name');
+            return
         } else if (!validatedSurname) {
             toast('Enter correct surname');
             return
@@ -43,29 +44,29 @@ const EditWorker = (props) => {
         props.editWorker(e)
     };
     return (
-        <div className='row'>
-            <div className='col'>
+        <div className="Table-row">
+            <div className="Table-row-item" data-header="Name">
                 <input type="text"
                        name='name'
                        value={props.workerToEdit.name}
                        placeholder='Enter Worker name'
                        onChange={(e) => onChangeInput(e)}/>
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Surname">
                 <input type="text"
                        name='surname'
                        value={props.workerToEdit.surname}
                        placeholder='Enter Worker surname'
                        onChange={(e) => onChangeInput(e)}/>
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Name">
                 <input type="text"
                        name='patronymic'
                        value={props.workerToEdit.patronymic}
                        placeholder='Enter Worker patronymic'
                        onChange={(e) => onChangeInput(e)}/>
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Contact">
 
                 <input type="text"
                        name='contact'
@@ -73,7 +74,7 @@ const EditWorker = (props) => {
                        placeholder='Enter Worker contact'
                        onChange={(e) => onChangeInput(e)}/>
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Position">
                 <input type="text"
                        name='position'
                        value={props.workerToEdit.position}
@@ -81,14 +82,17 @@ const EditWorker = (props) => {
                        onChange={(e) => onChangeInput(e)}/>
 
             </div>
-            <div className='col lg'>
-                <DataPicker stateProperty={'workerToEdit'}/>
+            <div className="Table-row-item" data-header="Birthday">
+                <div className='birthday'>
+                    <DataPicker stateProperty={'workerToEdit'}/>
+                </div>
+
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Gender">
                 <DropDown nameDrop={'gender'} stateProperty={'workerToEdit'} items={['male', 'female']}
                           selected={props.workerToEdit.gender}/>
             </div>
-            <div className='col'>
+            <div className="Table-row-item" data-header="Salary">
                 <input type="number"
                        name='salary'
                        className='editInput'
@@ -96,7 +100,7 @@ const EditWorker = (props) => {
                        placeholder='Enter Worker salary'
                        onChange={(e) => onChangeInput(e)}/>
             </div>
-            <div className='col lastRowCol'>
+            <div className="Table-row-item" data-header="Edit">
                 <i title='save' className="fas fa-check" id='' onClick={(e) => onSubmitEdit(e)}/>
                 <i title='cancel' className="fas fa-reply" id='' onClick={(e) => onCancelEdit(e)}/>
             </div>

@@ -103,6 +103,9 @@ const AddWorker = (props) => {
                            placeholder='Enter Worker contact'
                            onChange={(e) => onChangeInput(e)}/>
                     <Button className='submitAddButton' type="submit">Finalize</Button>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                        Click me!
+                    </Accordion.Toggle>
                 </Form>
             </Accordion.Collapse>
             {

@@ -15,7 +15,7 @@ const PaginationWorkers = (props) => {
         props.getWorkers(d)
     };
     return (
-        <div className='d-flex justify-content-center'>
+        <div className='d-flex justify-content-center mt-3'>
             <Pagination
                 hideDisabled
                 itemClass="page-item"
