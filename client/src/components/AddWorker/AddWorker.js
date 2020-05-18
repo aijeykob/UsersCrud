@@ -30,23 +30,29 @@ const AddWorker = (props) => {
 
         if (!validatedName) {
             toast('Enter correct name');
+            return
         } else if (!validatedSurname) {
             toast('Enter correct surname');
+            return
         } else if (!validatedPatronymic) {
             toast('Enter correct patronymic');
+            return
         } else if (!validatedPosition) {
             toast('Enter correct position');
+            return
         } else if (!validatedSalary) {
             toast('Enter correct salary');
+            return
         } else if (!validatedContact) {
             toast('Enter correct contact');
+            return
         }
         props.submitWorker(props.workerToAdd);
 
     };
     return (
         <Accordion>
-            <Accordion.Toggle className='accordionBtn' eventKey="0" >Add Worker</Accordion.Toggle>
+            <Accordion.Toggle className='accordionBtn' eventKey="0">Add Worker</Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
                 <Form onSubmit={onSubmitWorker}>
                     <div className='accordion__label'>Name:</div>
@@ -56,7 +62,7 @@ const AddWorker = (props) => {
                            value={props.workerToAdd.name}
                            placeholder='Enter Worker name'
                            onChange={(e) => onChangeInput(e)}/>
-                    <div className='accordion__label' >Surname:</div>
+                    <div className='accordion__label'>Surname:</div>
                     <input type="text"
                            name='surname'
                            className='accordion__input'

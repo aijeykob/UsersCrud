@@ -1,5 +1,6 @@
 const Worker = require('../model/worker');
 const moment = require('moment');
+const paginate = require('jw-paginate');
 exports.addWorker = async function (req, res) {
     try {
         const formattedBirthday = moment(`${req.body.year}-${req.body.month}-${req.body.day}`).format();
@@ -27,8 +28,11 @@ exports.addWorker = async function (req, res) {
 };
 exports.getWorkers = async function (req, res) {
     try {
-        const workersFromDb = await Worker.find({}, {__v: 0}).limit(10);
-        res.json(workersFromDb)
+        const total = await Worker.count();
+        const limit = 5; //Limit Workers
+        const offset = req.body.data.offset * limit;  //How much skip for page
+        const workersFromDb = await Worker.find({}, {__v: 0}).skip(offset).limit(limit)
+        res.json({total, workersFromDb});
     } catch (err) {
         console.log(err);
         res.status(400).send({
@@ -39,7 +43,7 @@ exports.getWorkers = async function (req, res) {
 };
 exports.deleteWorker = async function (req, res) {
     try {
-         await Worker.deleteOne({_id: req.body.id}, {__v: 0});
+        await Worker.deleteOne({_id: req.body.id}, {__v: 0});
         res.json({id: req.body.id})
     } catch (err) {
         console.log(err);

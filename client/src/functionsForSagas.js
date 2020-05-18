@@ -47,9 +47,10 @@ export const setWorkerToDelete = (d) => {
         {headers: setHeadersWithToken()}
     )
 };
-export const getWorkers = () => {
-    return axios.get(
+export const getWorkers = (d) => {
+    return axios.post(
         `${apiUrl}/getWorkers`,
+        {data: d.payload},
         {headers: setHeadersWithToken()}
     )
 };

@@ -38,6 +38,10 @@
   color: white;
   align-items: center;
 
+  &.lg {
+    flex: 3;
+    justify-content: center;
+  }
 
 }
 
@@ -59,7 +63,7 @@
   justify-content: space-between;
 }
 
-.containerr {
+.HomeContainer {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;

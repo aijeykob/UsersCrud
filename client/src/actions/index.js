@@ -18,6 +18,8 @@ export const REMOVE_DELETED_WORKER = "REMOVE_DELETED_WORKER";
 export const UPDATE_WORKER = "UPDATE_WORKER";
 export const SET_UPDATED_WORKER = "SET_UPDATED_WORKER";
 export const ERROR_TOAST = "ERROR_TOAST";
+export const CHANGE_OFFSET = "CHANGE_OFFSET";
+export const CHANGE_PAGE_PAGINATION = "CHANGE_PAGE_PAGINATION";
 
 
 export const writingRegistrationText = (text, field) => ({
@@ -47,8 +49,8 @@ export const checkToken = () => ({
 export const logOut = () => ({
     type: LOGOUT,
 });
-export const getWorkers = () => ({
-    type: GET_WORKERS,
+export const getWorkers = (d) => ({
+    type: GET_WORKERS, payload: d
 });
 export const setWorkers = () => ({
     type: SET_WORKERS,
@@ -88,4 +90,10 @@ export const removeDeletedWorker = (id) => ({
 });
 export const errorToast = (data) => ({
     type: ERROR_TOAST, payload: data
+});
+export const changeOffset = (offset) => ({
+    type: CHANGE_OFFSET, payload: offset
+});
+export const changePagePagination = (page) => ({
+    type: CHANGE_PAGE_PAGINATION, payload: page
 });

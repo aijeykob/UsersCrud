@@ -81,7 +81,7 @@ const EditWorker = (props) => {
                        onChange={(e) => onChangeInput(e)}/>
 
             </div>
-            <div className='col'>
+            <div className='col lg'>
                 <DataPicker stateProperty={'workerToEdit'}/>
             </div>
             <div className='col'>

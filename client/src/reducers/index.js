@@ -12,10 +12,17 @@ import {
     REMOVE_DELETED_WORKER,
     SET_UPDATED_WORKER,
     ERROR_TOAST,
+    CHANGE_PAGE_PAGINATION,
+    CHANGE_OFFSET,
 
 } from '../actions/index';
 
 const initState = {
+    paginationWorkers: {
+        total: null,
+        offset: 0,
+        activePage: 1,
+    },
     error: {
         status: true,
         text: ''
@@ -42,7 +49,12 @@ const reducer = (state = initState, {type, payload, field, stateProperty}) => {
         case SET_WORKERS:
             return {
                 ...state,
-                workers: payload
+                workers: payload.workersFromDb,
+                paginationWorkers: {
+                    ...state.paginationWorkers,
+                    total: payload.total
+                }
+
             };
         case ERROR_TOAST:
             return {
@@ -129,6 +141,22 @@ const reducer = (state = initState, {type, payload, field, stateProperty}) => {
             return {
                 ...state,
                 currentUser: ''
+            };
+        case CHANGE_PAGE_PAGINATION:
+            return {
+                ...state,
+                paginationWorkers: {
+                    ...state.paginationWorkers,
+                    activePage: payload
+                }
+            };
+        case CHANGE_OFFSET:
+            return {
+                ...state,
+                paginationWorkers: {
+                    ...state.paginationWorkers,
+                    offset: payload
+                }
             };
         default:
             return state

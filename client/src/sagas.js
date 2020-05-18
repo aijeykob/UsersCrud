@@ -40,7 +40,7 @@ export function* workerCheckToken() {
         const data = response.data;
         yield put({type: 'SET_CURRENT_USER', payload: data.username})
     } catch (error) {
-        yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+        console.log(error)
     }
 }
 
@@ -62,7 +62,7 @@ export function* workerSetWorkerToDelete(d) {
         const data = response.data;
         yield put({type: 'REMOVE_DELETED_WORKER', payload: data})
     } catch (error) {
-        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+        yield put({type: 'ERROR_TOAST', payload: error.response.data});
     }
 }
 
@@ -73,18 +73,17 @@ export function* workerUpdateWorker(d) {
         const data = response.data;
         yield put({type: 'SET_UPDATED_WORKER', payload: data})
     } catch (error) {
-        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+        yield put({type: 'ERROR_TOAST', payload: error.response.data});
     }
 }
 
-export function* workerGetWorkers() {
+export function* workerGetWorkers(d) {
     try {
-        const response = yield call(getWorkers);
+        const response = yield call(getWorkers, d);
         const data = response.data;
-        console.log(data);
         yield put({type: 'SET_WORKERS', payload: data})
     } catch (error) {
-        // yield put({type: 'STATUS_REGISTRATION', payload: error.response.status});
+        yield put({type: 'ERROR_TOAST', payload: error.response.data});
     }
 }
 

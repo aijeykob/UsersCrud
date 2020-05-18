@@ -11,7 +11,7 @@ routes.post('/registration', validatorMiddleware.checkRegistration, userControll
 routes.post('/login', validatorMiddleware.checkLogin, token.login);
 routes.post('/checkToken', tokenMiddleware.checkToken, userController.viewProfile);
 routes.post('/addWorker', validatorMiddleware.checkAddWorker, tokenMiddleware.checkToken, workerController.addWorker);
-routes.post('/deleteWorker',validatorMiddleware.checkDeleteWorker, tokenMiddleware.checkToken, workerController.deleteWorker);
+routes.post('/deleteWorker', validatorMiddleware.checkDeleteWorker, tokenMiddleware.checkToken, workerController.deleteWorker);
 routes.post('/updateWorker', validatorMiddleware.checkUpdateWorker, tokenMiddleware.checkToken, workerController.updateWorker);
-routes.get('/getWorkers', tokenMiddleware.checkToken, workerController.getWorkers);
+routes.post('/getWorkers', tokenMiddleware.checkToken, workerController.getWorkers);
 module.exports = routes;

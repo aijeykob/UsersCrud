@@ -6,10 +6,12 @@ import './Home.scss';
 import AddWorker from "../AddWorker/AddWorker";
 import moment from "moment";
 import EditWorker from "../EditWorker/EditWorker";
+import PaginationWorkers from "../PaginationWorkers/PaginationWorkers";
 
 const Home = (props) => {
     useEffect(() => {
-        props.getWorkers();
+        const d = props.paginationWorkers;
+        props.getWorkers(d);
     }, []);
     const [workerEditToggle, setWorkerEditToggle] = useState('');
 
@@ -28,7 +30,7 @@ const Home = (props) => {
         props.setWorkerToDelete(e.target.id)
     };
     return (
-        <div className='containerr'>
+        <div className='HomeContainer'>
             <AddWorker/>
             <div className="home">
                 <div className="content">
@@ -39,7 +41,7 @@ const Home = (props) => {
                             <div className="col">Patronymic</div>
                             <div className="col">Contact</div>
                             <div className="col">Position</div>
-                            <div className="col">Birthday</div>
+                            <div className="col lg">Birthday</div>
                             <div className="col">Gender</div>
                             <div className="col">Salary</div>
                             <div className="col lastHeaderCol">Edit</div>
@@ -48,7 +50,8 @@ const Home = (props) => {
                         {
                             props.workers.map(el => {
                                 return (
-                                    (workerEditToggle === el._id) ? <EditWorker key={el._id} editWorker={(e) => editWorker(e)}/>
+                                    (workerEditToggle === el._id) ?
+                                        <EditWorker key={el._id} editWorker={(e) => editWorker(e)}/>
                                         :
                                         <div className='row' key={el._id}>
                                             <div className='col'>{el.name}</div>
@@ -56,7 +59,7 @@ const Home = (props) => {
                                             <div className='col'>{el.patronymic}</div>
                                             <div className='col'>{el.contact}</div>
                                             <div className='col'>{el.position}</div>
-                                            <div className='col'>{formatDate(el.birthday)}</div>
+                                            <div className='col lg'>{formatDate(el.birthday)}</div>
                                             <div className='col'>{el.gender}</div>
                                             <div className='col'>{el.salary}</div>
                                             <div className='col lastRowCol'>
@@ -70,6 +73,7 @@ const Home = (props) => {
                             })
                         }
                     </div>
+                    <PaginationWorkers/>
                 </div>
             </div>
         </div>
@@ -79,11 +83,12 @@ const Home = (props) => {
 const mapStateToProps = state => ({
     workerToAdd: state.workerToAdd,
     workers: state.workers,
+    paginationWorkers: state.paginationWorkers,
 });
 
 
 const mapDispatchToProps = dispatch => ({
-    getWorkers: () => dispatch(getWorkers()),
+    getWorkers: (d) => dispatch(getWorkers(d)),
     setWorkerToEdit: (id) => dispatch(setWorkerToEdit(id)),
     setWorkerToDelete: (id) => dispatch(setWorkerToDelete(id)),
 
