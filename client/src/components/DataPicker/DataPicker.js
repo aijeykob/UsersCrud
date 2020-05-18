@@ -63,7 +63,6 @@ class DataPicker extends React.Component {
                     as="select"
                     value={this.state.month}
                     onChange={this.monthChange}
-                    style={{height: '30px'}}
                     required>
                     <option value=''></option>
                     <option value='1'>January</option>
@@ -83,7 +82,6 @@ class DataPicker extends React.Component {
                     as="select"
                     value={this.state.year}
                     onChange={this.yearChange}
-                    style={{height: '30px'}}
                     required
                 >
                     {
@@ -100,7 +98,6 @@ class DataPicker extends React.Component {
                 <Form.Control value={this.state.day}
                               onChange={this.dayChange}
                               as="select"
-                              style={{height: '30px'}}
                               required
                 >
                     {

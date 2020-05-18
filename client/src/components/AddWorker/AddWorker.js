@@ -46,39 +46,53 @@ const AddWorker = (props) => {
     };
     return (
         <Accordion>
-            <Accordion.Toggle eventKey="0">Add Worker</Accordion.Toggle>
+            <Accordion.Toggle className='accordionBtn' eventKey="0" >Add Worker</Accordion.Toggle>
             <Accordion.Collapse eventKey="0">
                 <Form onSubmit={onSubmitWorker}>
+                    <div className='accordion__label'>Name:</div>
                     <input type="text"
                            name='name'
+                           className='accordion__input'
                            value={props.workerToAdd.name}
                            placeholder='Enter Worker name'
                            onChange={(e) => onChangeInput(e)}/>
+                    <div className='accordion__label' >Surname:</div>
                     <input type="text"
                            name='surname'
+                           className='accordion__input'
                            value={props.workerToAdd.surname}
                            placeholder='Enter Worker surname'
                            onChange={(e) => onChangeInput(e)}/>
+                    <div className='accordion__label'>Patronymic:</div>
                     <input type="text"
                            name='patronymic'
+                           className='accordion__input'
                            value={props.workerToAdd.patronymic}
                            placeholder='Enter Worker patronymic'
                            onChange={(e) => onChangeInput(e)}/>
+                    <div className='accordion__label'>Position:</div>
                     <input type="text"
                            name='position'
                            value={props.workerToAdd.position}
+                           className='accordion__input'
                            placeholder='Enter Worker position'
                            onChange={(e) => onChangeInput(e)}/>
+                    <div className='accordion__label'>Salary:</div>
                     <input type="number"
                            name='salary'
+                           className='accordion__input'
                            value={props.workerToAdd.salary}
                            placeholder='Enter Worker salary'
                            onChange={(e) => onChangeInput(e)}/>
+                    <div className='accordion__label'>Birthday:</div>
                     <DataPicker stateProperty='workerToAdd'/>
+                    <div className='accordion__label'>Gender:</div>
                     <DropDown nameDrop={'gender'} stateProperty={'workerToAdd'} items={['male', 'female']}
                               selected={props.workerToAdd.gender}/>
+                    <div className='accordion__label'>Contact:</div>
                     <input type="text"
                            name='contact'
+                           className='accordion__input'
                            value={props.workerToAdd.contact}
                            placeholder='Enter Worker contact'
                            onChange={(e) => onChangeInput(e)}/>

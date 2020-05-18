@@ -23,7 +23,7 @@ const Header = (props) => {
                             <NavLink className='Header__navLink' to={"/home"}>Home</NavLink>
                             </Nav>
 
-                                <Button className='header__logoutBtn float-right '
+                                <Button className='header__logoutBtn '
                                         onClick={(e) => onLogOut(e)}>LogOut</Button>
 
                             </>

@@ -48,9 +48,9 @@ const Home = (props) => {
                         {
                             props.workers.map(el => {
                                 return (
-                                    (workerEditToggle === el._id) ? <EditWorker editWorker={(e) => editWorker(e)}/>
+                                    (workerEditToggle === el._id) ? <EditWorker key={el._id} editWorker={(e) => editWorker(e)}/>
                                         :
-                                        <div className='row' key={el.name}>
+                                        <div className='row' key={el._id}>
                                             <div className='col'>{el.name}</div>
                                             <div className='col'>{el.surname}</div>
                                             <div className='col'>{el.patronymic}</div>
