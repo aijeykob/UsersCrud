@@ -13,3 +13,4 @@ routes.post('/deleteWorker', validatorMiddleware.checkDeleteWorker, tokenMiddlew
 routes.post('/updateWorker', validatorMiddleware.checkUpdateWorker, tokenMiddleware.checkToken, workerController.updateWorker);
 routes.post('/getWorkers', tokenMiddleware.checkToken, workerController.getWorkers);
 module.exports = routes;
+//comment

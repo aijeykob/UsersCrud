@@ -10,4 +10,4 @@ app.use(bodyParser.urlencoded({extended: false}));
 const cors = require('cors');
 app.use(cors());
 app.use('/', routes);
-module.exports= app
+module.exports= app;
