@@ -4,23 +4,20 @@ const checkRegistration = async (req, res, next) => {
     const validatedUsername = req.body.username.match(/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/i);
     const validatedPassword = req.body.password.match(/^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/i);
     if (userFromDb) {
-        res.status(400).send({
+        res.status(403).send({
             status: false,
             text: "This user already exist"
         })
-    } else if (!validatedUsername) {
-        res.status(400).send({
-            status: false,
-            text: "Invalid username"
-        })
-    } else if (!validatedPassword) {
-        res.status(400).send({
-            status: false,
-            text: "Invalid password"
-        })
-    } else {
-        next()
+        return
     }
+    if (!validatedUsername || !validatedPassword ) {
+        res.status(400).send({
+            status: false,
+            text: "Invalid username or password"
+        })
+        return
+    }
+    next()
 };
 const checkLogin = async (req, res, next) => {
     const validatedUsername = req.body.username.match(/^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$/i);
@@ -95,7 +92,7 @@ const checkUpdateWorker = async (req, res, next) => {
     req.body=paramsForUpdate;
     if (!req.body.position || !req.body.surname || !req.body.patronymic || !req.body.gender
         || !req.body.contact || !req.body.salary || !req.body.month || !req.body.year || !req.body.day) {
-        res.status(400).send({
+        res.status(403).send({
             status: false,
             text: "Please fill all fields"
         });
@@ -112,7 +109,7 @@ const checkUpdateWorker = async (req, res, next) => {
 
     if (!validatedName || !validatedSurname || !validatedPatronymic || !validatedPosition
         || !validatedSalary || !validatedContact) {
-        res.status(400).send({
+        res.status(403).send({
             status: false,
             text: "Please enter correct date"
         });

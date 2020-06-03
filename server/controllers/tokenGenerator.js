@@ -13,7 +13,7 @@ module.exports = class HandlerGenerator {
                     expiresIn: '24h' // expires in 24 hours
                 }
             );
-            res.json({
+            res.status(201).send({
                 token: token,
                 user: {username: userFromDb.username}
             })
