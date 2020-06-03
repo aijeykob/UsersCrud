@@ -5,8 +5,6 @@ const workerController = require('../controllers/WorkerController');
 const tokenMiddleware = require('../middlewares/tokenMiddleware');
 const validatorMiddleware = require('../middlewares/validatorMiddleware');
 let token = new tokenGenerator();
-
-
 routes.post('/registration', validatorMiddleware.checkRegistration, userController.registration, token.registration);
 routes.post('/login', validatorMiddleware.checkLogin, token.login);
 routes.post('/checkToken', tokenMiddleware.checkToken, userController.viewProfile);
