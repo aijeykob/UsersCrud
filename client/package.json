@@ -10,7 +10,7 @@
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.0.0-alpha3",
     "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-calendar": "^3.1.0",
